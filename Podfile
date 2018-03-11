@@ -6,7 +6,9 @@ target 'LotteryStatistics' do
   use_frameworks!
 
   # Pods for LotteryStatistics
-  pod 'SwiftSoup'
+  pod 'Fuzi'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
 
   target 'LotteryStatisticsTests' do
     inherit! :search_paths
