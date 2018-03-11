@@ -17,10 +17,10 @@
 		330A57562054E50200168CE4 /* FirebaseDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A57552054E50200168CE4 /* FirebaseDatabase.swift */; };
 		330A57592054E6F200168CE4 /* Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A57582054E6F200168CE4 /* Draw.swift */; };
 		330A575C2054E78500168CE4 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A575B2054E78500168CE4 /* Date.swift */; };
-		330A575E2054E9BC00168CE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 330A575D2054E9BC00168CE4 /* GoogleService-Info.plist */; };
 		330A57602054EAA200168CE4 /* DrawResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A575F2054EAA200168CE4 /* DrawResult.swift */; };
 		330A57622054F09000168CE4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A57612054F09000168CE4 /* String.swift */; };
 		330A57652054F9A500168CE4 /* Crawler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A57642054F9A500168CE4 /* Crawler.swift */; };
+		330A576720555EC700168CE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 330A576620555EC700168CE4 /* GoogleService-Info.plist */; };
 		33ED66B52054D7E4005BAED2 /* SourceNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ED66B42054D7E4005BAED2 /* SourceNetwork.swift */; };
 		33ED66B82054DC39005BAED2 /* HtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ED66B72054DC39005BAED2 /* HtmlParser.swift */; };
 		A926E1885BE52901E57897C8 /* Pods_LotteryStatisticsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732B3C751C8CFCAFA5B9530B /* Pods_LotteryStatisticsUITests.framework */; };
@@ -63,10 +63,10 @@
 		330A57552054E50200168CE4 /* FirebaseDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabase.swift; sourceTree = "<group>"; };
 		330A57582054E6F200168CE4 /* Draw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Draw.swift; sourceTree = "<group>"; };
 		330A575B2054E78500168CE4 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		330A575D2054E9BC00168CE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		330A575F2054EAA200168CE4 /* DrawResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawResult.swift; sourceTree = "<group>"; };
 		330A57612054F09000168CE4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		330A57642054F9A500168CE4 /* Crawler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crawler.swift; sourceTree = "<group>"; };
+		330A576620555EC700168CE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		33ED66B42054D7E4005BAED2 /* SourceNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceNetwork.swift; sourceTree = "<group>"; };
 		33ED66B72054DC39005BAED2 /* HtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlParser.swift; sourceTree = "<group>"; };
 		3E526697F3A26B20449DE0E5 /* Pods-LotteryStatisticsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LotteryStatisticsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LotteryStatisticsUITests/Pods-LotteryStatisticsUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -138,8 +138,8 @@
 				3301DC5E2054CDB200B6283B /* Main.storyboard */,
 				3301DC612054CDB200B6283B /* Assets.xcassets */,
 				3301DC632054CDB200B6283B /* LaunchScreen.storyboard */,
-				330A575D2054E9BC00168CE4 /* GoogleService-Info.plist */,
 				3301DC662054CDB200B6283B /* Info.plist */,
+				330A576620555EC700168CE4 /* GoogleService-Info.plist */,
 			);
 			path = LotteryStatistics;
 			sourceTree = "<group>";
@@ -365,7 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3301DC652054CDB200B6283B /* LaunchScreen.storyboard in Resources */,
-				330A575E2054E9BC00168CE4 /* GoogleService-Info.plist in Resources */,
+				330A576720555EC700168CE4 /* GoogleService-Info.plist in Resources */,
 				3301DC622054CDB200B6283B /* Assets.xcassets in Resources */,
 				3301DC602054CDB200B6283B /* Main.storyboard in Resources */,
 			);

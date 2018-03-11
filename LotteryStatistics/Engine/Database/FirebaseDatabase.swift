@@ -27,6 +27,13 @@ class FirebaseDatabase {
         }
     }
     
+    func drawIsExisted(date: Date, completion: @escaping (Bool) -> Void) {
+        let child = drawsRef.child(date.shortFormatString)
+        child.observe(.value) { (dataSnapshot) in
+            completion(dataSnapshot.exists())
+        }
+    }
+    
     class func setUp() {
         FirebaseApp.configure()
     }
