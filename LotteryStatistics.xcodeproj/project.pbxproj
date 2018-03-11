@@ -14,6 +14,9 @@
 		3301DC652054CDB200B6283B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3301DC632054CDB200B6283B /* LaunchScreen.storyboard */; };
 		3301DC702054CDB200B6283B /* LotteryStatisticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3301DC6F2054CDB200B6283B /* LotteryStatisticsTests.swift */; };
 		3301DC7B2054CDB200B6283B /* LotteryStatisticsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3301DC7A2054CDB200B6283B /* LotteryStatisticsUITests.swift */; };
+		A926E1885BE52901E57897C8 /* Pods_LotteryStatisticsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732B3C751C8CFCAFA5B9530B /* Pods_LotteryStatisticsUITests.framework */; };
+		B46F32666D4C4893BAA26C82 /* Pods_LotteryStatistics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D56BE7262AC15F95327BE8E6 /* Pods_LotteryStatistics.framework */; };
+		BA77E61B945CBF47B4C3F4E5 /* Pods_LotteryStatisticsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E64D8C873D6A73A8FF9958 /* Pods_LotteryStatisticsTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F23D709A982484B5DE703BB /* Pods-LotteryStatistics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LotteryStatistics.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LotteryStatistics/Pods-LotteryStatistics.debug.xcconfig"; sourceTree = "<group>"; };
 		3301DC572054CDB200B6283B /* LotteryStatistics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LotteryStatistics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3301DC5A2054CDB200B6283B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3301DC5C2054CDB200B6283B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +51,14 @@
 		3301DC762054CDB200B6283B /* LotteryStatisticsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LotteryStatisticsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3301DC7A2054CDB200B6283B /* LotteryStatisticsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotteryStatisticsUITests.swift; sourceTree = "<group>"; };
 		3301DC7C2054CDB200B6283B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E526697F3A26B20449DE0E5 /* Pods-LotteryStatisticsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LotteryStatisticsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LotteryStatisticsUITests/Pods-LotteryStatisticsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6AAC457854C362F1C1466B90 /* Pods-LotteryStatisticsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LotteryStatisticsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LotteryStatisticsUITests/Pods-LotteryStatisticsUITests.release.xcconfig"; sourceTree = "<group>"; };
+		732B3C751C8CFCAFA5B9530B /* Pods_LotteryStatisticsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LotteryStatisticsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FE2147C63033FDBC25357A9 /* Pods-LotteryStatisticsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LotteryStatisticsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LotteryStatisticsTests/Pods-LotteryStatisticsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AD1F8AF710FD84A90BBDBF35 /* Pods-LotteryStatistics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LotteryStatistics.release.xcconfig"; path = "Pods/Target Support Files/Pods-LotteryStatistics/Pods-LotteryStatistics.release.xcconfig"; sourceTree = "<group>"; };
+		D56BE7262AC15F95327BE8E6 /* Pods_LotteryStatistics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LotteryStatistics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAE2415C3876771DD0C5EC70 /* Pods-LotteryStatisticsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LotteryStatisticsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LotteryStatisticsTests/Pods-LotteryStatisticsTests.release.xcconfig"; sourceTree = "<group>"; };
+		E7E64D8C873D6A73A8FF9958 /* Pods_LotteryStatisticsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LotteryStatisticsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B46F32666D4C4893BAA26C82 /* Pods_LotteryStatistics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA77E61B945CBF47B4C3F4E5 /* Pods_LotteryStatisticsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A926E1885BE52901E57897C8 /* Pods_LotteryStatisticsUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +96,8 @@
 				3301DC6E2054CDB200B6283B /* LotteryStatisticsTests */,
 				3301DC792054CDB200B6283B /* LotteryStatisticsUITests */,
 				3301DC582054CDB200B6283B /* Products */,
+				8C4A7866D73C690C755CE4EA /* Pods */,
+				9A245FD17451D962692EEF81 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +142,29 @@
 			path = LotteryStatisticsUITests;
 			sourceTree = "<group>";
 		};
+		8C4A7866D73C690C755CE4EA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0F23D709A982484B5DE703BB /* Pods-LotteryStatistics.debug.xcconfig */,
+				AD1F8AF710FD84A90BBDBF35 /* Pods-LotteryStatistics.release.xcconfig */,
+				8FE2147C63033FDBC25357A9 /* Pods-LotteryStatisticsTests.debug.xcconfig */,
+				DAE2415C3876771DD0C5EC70 /* Pods-LotteryStatisticsTests.release.xcconfig */,
+				3E526697F3A26B20449DE0E5 /* Pods-LotteryStatisticsUITests.debug.xcconfig */,
+				6AAC457854C362F1C1466B90 /* Pods-LotteryStatisticsUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9A245FD17451D962692EEF81 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D56BE7262AC15F95327BE8E6 /* Pods_LotteryStatistics.framework */,
+				E7E64D8C873D6A73A8FF9958 /* Pods_LotteryStatisticsTests.framework */,
+				732B3C751C8CFCAFA5B9530B /* Pods_LotteryStatisticsUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +172,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3301DC7F2054CDB200B6283B /* Build configuration list for PBXNativeTarget "LotteryStatistics" */;
 			buildPhases = (
+				4C0A46C783373830002AABC3 /* [CP] Check Pods Manifest.lock */,
 				3301DC532054CDB200B6283B /* Sources */,
 				3301DC542054CDB200B6283B /* Frameworks */,
 				3301DC552054CDB200B6283B /* Resources */,
+				583AB9B4B728E30A51C75B5C /* [CP] Embed Pods Frameworks */,
+				885C2771AB8A2084082C589B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +192,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3301DC822054CDB200B6283B /* Build configuration list for PBXNativeTarget "LotteryStatisticsTests" */;
 			buildPhases = (
+				D6327A5139C077C55AF88CA1 /* [CP] Check Pods Manifest.lock */,
 				3301DC672054CDB200B6283B /* Sources */,
 				3301DC682054CDB200B6283B /* Frameworks */,
 				3301DC692054CDB200B6283B /* Resources */,
+				F924D9FA26EDDB606D3D9300 /* [CP] Embed Pods Frameworks */,
+				D8091B5560844006A9A3B68A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +213,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3301DC852054CDB200B6283B /* Build configuration list for PBXNativeTarget "LotteryStatisticsUITests" */;
 			buildPhases = (
+				9692A6F78453B682070CF357 /* [CP] Check Pods Manifest.lock */,
 				3301DC722054CDB200B6283B /* Sources */,
 				3301DC732054CDB200B6283B /* Frameworks */,
 				3301DC742054CDB200B6283B /* Resources */,
+				50359EB281B358D6AD650C94 /* [CP] Embed Pods Frameworks */,
+				D2913A854269E141217E1E2F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,6 +302,156 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4C0A46C783373830002AABC3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LotteryStatistics-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		50359EB281B358D6AD650C94 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatisticsUITests/Pods-LotteryStatisticsUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		583AB9B4B728E30A51C75B5C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatistics/Pods-LotteryStatistics-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatistics/Pods-LotteryStatistics-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		885C2771AB8A2084082C589B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatistics/Pods-LotteryStatistics-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9692A6F78453B682070CF357 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LotteryStatisticsUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2913A854269E141217E1E2F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatisticsUITests/Pods-LotteryStatisticsUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6327A5139C077C55AF88CA1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LotteryStatisticsTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D8091B5560844006A9A3B68A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatisticsTests/Pods-LotteryStatisticsTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F924D9FA26EDDB606D3D9300 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatisticsTests/Pods-LotteryStatisticsTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3301DC532054CDB200B6283B /* Sources */ = {
@@ -424,6 +623,7 @@
 		};
 		3301DC802054CDB200B6283B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F23D709A982484B5DE703BB /* Pods-LotteryStatistics.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -439,6 +639,7 @@
 		};
 		3301DC812054CDB200B6283B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD1F8AF710FD84A90BBDBF35 /* Pods-LotteryStatistics.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -454,6 +655,7 @@
 		};
 		3301DC832054CDB200B6283B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FE2147C63033FDBC25357A9 /* Pods-LotteryStatisticsTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -471,6 +673,7 @@
 		};
 		3301DC842054CDB200B6283B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAE2415C3876771DD0C5EC70 /* Pods-LotteryStatisticsTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -488,6 +691,7 @@
 		};
 		3301DC862054CDB200B6283B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E526697F3A26B20449DE0E5 /* Pods-LotteryStatisticsUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -504,6 +708,7 @@
 		};
 		3301DC872054CDB200B6283B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AAC457854C362F1C1466B90 /* Pods-LotteryStatisticsUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
