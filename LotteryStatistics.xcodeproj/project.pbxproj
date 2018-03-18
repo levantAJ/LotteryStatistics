@@ -21,6 +21,8 @@
 		330A57622054F09000168CE4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A57612054F09000168CE4 /* String.swift */; };
 		330A57652054F9A500168CE4 /* Crawler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A57642054F9A500168CE4 /* Crawler.swift */; };
 		330A576720555EC700168CE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 330A576620555EC700168CE4 /* GoogleService-Info.plist */; };
+		339748082056D5FC00C71D86 /* Crawl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339748072056D5FC00C71D86 /* Crawl.swift */; };
+		33E90CC4205E31510046825E /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E90CC3205E31510046825E /* DateFormatter.swift */; };
 		33ED66B52054D7E4005BAED2 /* SourceNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ED66B42054D7E4005BAED2 /* SourceNetwork.swift */; };
 		33ED66B82054DC39005BAED2 /* HtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ED66B72054DC39005BAED2 /* HtmlParser.swift */; };
 		A926E1885BE52901E57897C8 /* Pods_LotteryStatisticsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732B3C751C8CFCAFA5B9530B /* Pods_LotteryStatisticsUITests.framework */; };
@@ -67,6 +69,8 @@
 		330A57612054F09000168CE4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		330A57642054F9A500168CE4 /* Crawler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crawler.swift; sourceTree = "<group>"; };
 		330A576620555EC700168CE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		339748072056D5FC00C71D86 /* Crawl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crawl.swift; sourceTree = "<group>"; };
+		33E90CC3205E31510046825E /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		33ED66B42054D7E4005BAED2 /* SourceNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceNetwork.swift; sourceTree = "<group>"; };
 		33ED66B72054DC39005BAED2 /* HtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlParser.swift; sourceTree = "<group>"; };
 		3E526697F3A26B20449DE0E5 /* Pods-LotteryStatisticsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LotteryStatisticsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LotteryStatisticsUITests/Pods-LotteryStatisticsUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 			children = (
 				330A57582054E6F200168CE4 /* Draw.swift */,
 				330A575F2054EAA200168CE4 /* DrawResult.swift */,
+				339748072056D5FC00C71D86 /* Crawl.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 			children = (
 				330A575B2054E78500168CE4 /* Date.swift */,
 				330A57612054F09000168CE4 /* String.swift */,
+				33E90CC3205E31510046825E /* DateFormatter.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -326,6 +332,11 @@
 					3301DC562054CDB200B6283B = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					3301DC6A2054CDB200B6283B = {
 						CreatedOnToolsVersion = 9.2;
@@ -429,14 +440,18 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatistics/Pods-LotteryStatistics-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Fuzi/Fuzi.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuzi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -548,10 +563,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33E90CC4205E31510046825E /* DateFormatter.swift in Sources */,
 				330A57652054F9A500168CE4 /* Crawler.swift in Sources */,
 				330A57602054EAA200168CE4 /* DrawResult.swift in Sources */,
 				330A57562054E50200168CE4 /* FirebaseDatabase.swift in Sources */,
 				3301DC5D2054CDB200B6283B /* ViewController.swift in Sources */,
+				339748082056D5FC00C71D86 /* Crawl.swift in Sources */,
 				330A57622054F09000168CE4 /* String.swift in Sources */,
 				330A575C2054E78500168CE4 /* Date.swift in Sources */,
 				33ED66B82054DC39005BAED2 /* HtmlParser.swift in Sources */,

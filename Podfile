@@ -9,6 +9,7 @@ target 'LotteryStatistics' do
   pod 'Fuzi'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'Firebase/Performance'
 
   target 'LotteryStatisticsTests' do
     inherit! :search_paths

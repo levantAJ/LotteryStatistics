@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebasePerformance
 
 enum Response<Value> {
     case success(Value)
@@ -14,9 +15,11 @@ enum Response<Value> {
 }
 
 class SourceNetwork {
-    
     func request(url: URL, completion: @escaping (Response<Data>) -> Void) {
+        let metric = HTTPMetric(url: url, httpMethod: .get)
+        metric?.start()
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            metric?.stop()
             if let data = data {
                 completion(.success(data))
             } else if let error = error {

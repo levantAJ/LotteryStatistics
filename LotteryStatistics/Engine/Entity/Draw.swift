@@ -8,12 +8,33 @@
 
 import Foundation
 
-struct Draw {
+struct Draw: Codable {
     let id: String
     let date: Date
     let numbers: [Int]
     let results: [DrawResult]
     
+    init(id: String, date: Date, numbers: [Int], results: [DrawResult]) {
+        self.id = id
+        self.date = date
+        self.numbers = numbers
+        self.results = results
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try container.decode(String.self, forKey: .id)
+        numbers = try container.decode([Int].self, forKey: .numbers)
+        results = try container.decode([DrawResult].self, forKey: .results)
+        
+        let formatter = DateFormatter.ddMMyyyy
+        if let parsingDate = formatter.date(from: try container.decode(String.self, forKey: .date)) {
+            date = parsingDate
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .date, in: container, debugDescription: "Date string does not match format expected by formatter.")
+        }
+    }
     
     var json: [String: Any] {
         var resultsJSON: [[String:Any]] = []

@@ -18,7 +18,7 @@ extension Date {
     }
     
     var shortFormatString: String {
-        return string(dateFormat: "dd-MM-yyyy")
+        return string(dateFormat: DateFormatter.ddMMyyyyFormat)
     }
     
     func string(dateFormat: String) -> String {

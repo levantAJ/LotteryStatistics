@@ -14,16 +14,17 @@ class Crawler {
     let calendar = Calendar.current
     
     func crawl() {
-        var date = "31/12/2017".date(format: "dd/MM/yyyy")!
-        
-        while true {
-            checkAndCrawl(date: date)
-            if calendar.component(.day, from: date) == 1 &&
-                calendar.component(.month, from: date) == 1 &&
-                calendar.component(.year, from: date) == 2107 {
-                return
+        DispatchQueue.global().async {
+            var date = Date()
+            while true {
+                self.checkAndCrawl(date: date)
+                if self.calendar.component(.day, from: date) == 1 &&
+                    self.calendar.component(.month, from: date) == 1 &&
+                    self.calendar.component(.year, from: date) == 2016 {
+                    return
+                }
+                date = date.yesterday
             }
-            date = date.yesterday
         }
     }
 }
@@ -55,9 +56,11 @@ extension Crawler {
                 if let html = String(data: data, encoding: .utf8),
                     let draw = HtmlParser(html: html)?.draw {
                     strongSelf.database.saveIfNeeded(draw: draw)
+                    strongSelf.database.saveIfNeeded(crawl: Crawl(date: draw.date, hasData: true))
                     debugPrint("Save draw at %@", draw.date.shortFormatString)
                 } else {
                     debugPrint("Cannot parse data to string for:", day, month, year)
+                    strongSelf.database.saveIfNeeded(crawl: Crawl(date: date, hasData: false))
                 }
             case .failure(let error):
                 debugPrint("Cannot make a request with error: ", error)
