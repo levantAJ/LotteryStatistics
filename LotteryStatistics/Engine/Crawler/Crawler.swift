@@ -12,8 +12,24 @@ class Crawler {
     let network = SourceNetwork()
     let database = FirebaseDatabase()
     let calendar = Calendar.current
+    lazy var crawlerV2 = VLV2Crawler()
     
     func crawl() {
+        // crawlV1()
+        crawlV2()
+    }
+}
+
+//MARK: - Privates - V2
+
+extension Crawler {
+    private func crawlV2() {
+        DispatchQueue.global().async {
+            self.crawlerV2.crawl()
+        }
+    }
+
+    private func crawlV1() {
         DispatchQueue.global().async {
             var date = Date()
             while true {
@@ -29,7 +45,7 @@ class Crawler {
     }
 }
 
-//MARK: - Privates
+//MARK: - Privates - V1
 
 extension Crawler {
     fileprivate func checkAndCrawl(date: Date) {

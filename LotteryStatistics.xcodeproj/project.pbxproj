@@ -25,6 +25,7 @@
 		33E90CC4205E31510046825E /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E90CC3205E31510046825E /* DateFormatter.swift */; };
 		33ED66B52054D7E4005BAED2 /* SourceNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ED66B42054D7E4005BAED2 /* SourceNetwork.swift */; };
 		33ED66B82054DC39005BAED2 /* HtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ED66B72054DC39005BAED2 /* HtmlParser.swift */; };
+		69E8918F263BB8FE00AF583B /* VLV2Crawler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E8918E263BB8FE00AF583B /* VLV2Crawler.swift */; };
 		A926E1885BE52901E57897C8 /* Pods_LotteryStatisticsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732B3C751C8CFCAFA5B9530B /* Pods_LotteryStatisticsUITests.framework */; };
 		B46F32666D4C4893BAA26C82 /* Pods_LotteryStatistics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D56BE7262AC15F95327BE8E6 /* Pods_LotteryStatistics.framework */; };
 		BA77E61B945CBF47B4C3F4E5 /* Pods_LotteryStatisticsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E64D8C873D6A73A8FF9958 /* Pods_LotteryStatisticsTests.framework */; };
@@ -74,6 +75,7 @@
 		33ED66B42054D7E4005BAED2 /* SourceNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceNetwork.swift; sourceTree = "<group>"; };
 		33ED66B72054DC39005BAED2 /* HtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlParser.swift; sourceTree = "<group>"; };
 		3E526697F3A26B20449DE0E5 /* Pods-LotteryStatisticsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LotteryStatisticsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LotteryStatisticsUITests/Pods-LotteryStatisticsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		69E8918E263BB8FE00AF583B /* VLV2Crawler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLV2Crawler.swift; sourceTree = "<group>"; };
 		6AAC457854C362F1C1466B90 /* Pods-LotteryStatisticsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LotteryStatisticsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LotteryStatisticsUITests/Pods-LotteryStatisticsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		732B3C751C8CFCAFA5B9530B /* Pods_LotteryStatisticsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LotteryStatisticsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE2147C63033FDBC25357A9 /* Pods-LotteryStatisticsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LotteryStatisticsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LotteryStatisticsTests/Pods-LotteryStatisticsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				330A57642054F9A500168CE4 /* Crawler.swift */,
+				69E8918E263BB8FE00AF583B /* VLV2Crawler.swift */,
 			);
 			path = Crawler;
 			sourceTree = "<group>";
@@ -266,7 +269,6 @@
 				3301DC542054CDB200B6283B /* Frameworks */,
 				3301DC552054CDB200B6283B /* Resources */,
 				583AB9B4B728E30A51C75B5C /* [CP] Embed Pods Frameworks */,
-				885C2771AB8A2084082C589B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -285,8 +287,6 @@
 				3301DC672054CDB200B6283B /* Sources */,
 				3301DC682054CDB200B6283B /* Frameworks */,
 				3301DC692054CDB200B6283B /* Resources */,
-				F924D9FA26EDDB606D3D9300 /* [CP] Embed Pods Frameworks */,
-				D8091B5560844006A9A3B68A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -306,8 +306,6 @@
 				3301DC722054CDB200B6283B /* Sources */,
 				3301DC732054CDB200B6283B /* Frameworks */,
 				3301DC742054CDB200B6283B /* Resources */,
-				50359EB281B358D6AD650C94 /* [CP] Embed Pods Frameworks */,
-				D2913A854269E141217E1E2F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -417,32 +415,18 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		50359EB281B358D6AD650C94 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatisticsUITests/Pods-LotteryStatisticsUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		583AB9B4B728E30A51C75B5C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatistics/Pods-LotteryStatistics-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-LotteryStatistics/Pods-LotteryStatistics-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Fuzi/Fuzi.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SafetyCollection/SafetyCollection.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -452,27 +436,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SafetyCollection.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatistics/Pods-LotteryStatistics-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		885C2771AB8A2084082C589B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatistics/Pods-LotteryStatistics-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LotteryStatistics/Pods-LotteryStatistics-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9692A6F78453B682070CF357 /* [CP] Check Pods Manifest.lock */ = {
@@ -493,21 +463,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D2913A854269E141217E1E2F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatisticsUITests/Pods-LotteryStatisticsUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D6327A5139C077C55AF88CA1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -526,36 +481,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D8091B5560844006A9A3B68A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatisticsTests/Pods-LotteryStatisticsTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F924D9FA26EDDB606D3D9300 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LotteryStatisticsTests/Pods-LotteryStatisticsTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -569,6 +494,7 @@
 				330A57562054E50200168CE4 /* FirebaseDatabase.swift in Sources */,
 				3301DC5D2054CDB200B6283B /* ViewController.swift in Sources */,
 				339748082056D5FC00C71D86 /* Crawl.swift in Sources */,
+				69E8918F263BB8FE00AF583B /* VLV2Crawler.swift in Sources */,
 				330A57622054F09000168CE4 /* String.swift in Sources */,
 				330A575C2054E78500168CE4 /* Date.swift in Sources */,
 				33ED66B82054DC39005BAED2 /* HtmlParser.swift in Sources */,
