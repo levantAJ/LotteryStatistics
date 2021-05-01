@@ -23,6 +23,10 @@ extension String {
     func toInt() -> Int? {
         return Int(self)
     }
+
+    func toDouble() -> Double? {
+        return Double(self)
+    }
 }
 
 // MARK: - Tracking.EventName

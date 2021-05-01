@@ -14,9 +14,25 @@ class ViewController: UIViewController {
     lazy var crawler: Crawler = Crawler()
     lazy var db: FirebaseDatabase = FirebaseDatabase()
     lazy var tracker: Tracker = Tracker()
+    lazy var predictionTextFields: [UITextField] = []
+
+    lazy var allStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        stackView.distribution = .equalCentering
+        return stackView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.addSubview(allStackView)
+        allStackView.mid == view.mid
+        allStackView.leading >= view.leading
+        allStackView.trailing <= view.trailing
+        allStackView.top >= view.top + 44
+        allStackView.bottom <= view.bottom - 44
 
         let crawlButton = UIButton(type: .system)
         crawlButton.setTitle("Start crawl", for: .normal)
@@ -25,26 +41,10 @@ class ViewController: UIViewController {
         crawlButton.translatesAutoresizingMaskIntoConstraints = false
         crawlButton.addTarget(self, action: #selector(crawl), for: .touchUpInside)
         crawlButton.backgroundColor = .red
-        view.addSubview(crawlButton)
-        NSLayoutConstraint.activate([
-            crawlButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            crawlButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            crawlButton.widthAnchor.constraint(equalToConstant: 200),
-            crawlButton.heightAnchor.constraint(equalToConstant: 44),
-        ])
+        crawlButton.height == 44
+        allStackView.addArrangedSubview(crawlButton)
 
-        let predictButton = UIButton(type: .system)
-        predictButton.setTitle("Predict", for: .normal)
-        predictButton.setTitleColor(.white, for: .normal)
-        predictButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
-        predictButton.translatesAutoresizingMaskIntoConstraints = false
-        predictButton.addTarget(self, action: #selector(predict), for: .touchUpInside)
-        predictButton.backgroundColor = .green
-        view.addSubview(predictButton)
-        predictButton.leading == crawlButton.leading
-        predictButton.trailing == crawlButton.trailing
-        predictButton.top == crawlButton.bottom + 16
-        predictButton.height == crawlButton.height
+        addPredictionView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,6 +58,46 @@ class ViewController: UIViewController {
                 print("Fetch draws failed with error \(error)")
             }
         }
+    }
+
+    private func addPredictionView() {
+
+        let viewLine = UIView()
+        viewLine.backgroundColor = .red
+        viewLine.height == 0.5
+        allStackView.addArrangedSubview(viewLine)
+
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 2
+        stackView.height == 44
+        stackView.distribution = .fillEqually
+
+        for i in 0...5 {
+            let textField = UITextField()
+            textField.width == 70
+            textField.tag = i
+            textField.textAlignment = .center
+            textField.font = .systemFont(ofSize: 15, weight: .bold)
+            textField.layer.borderWidth = 2
+            textField.layer.borderColor = UIColor.gray.cgColor
+            textField.delegate = self
+            textField.addTarget(self, action: #selector(textDidChanged(_:)), for: .editingChanged)
+            stackView.addArrangedSubview(textField)
+            predictionTextFields.append(textField)
+        }
+
+        allStackView.addArrangedSubview(stackView)
+
+        let predictButton = UIButton(type: .system)
+        predictButton.setTitle("Predict", for: .normal)
+        predictButton.setTitleColor(.white, for: .normal)
+        predictButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        predictButton.translatesAutoresizingMaskIntoConstraints = false
+        predictButton.addTarget(self, action: #selector(predict), for: .touchUpInside)
+        predictButton.backgroundColor = .green
+        allStackView.addArrangedSubview(predictButton)
+        predictButton.height == 44
     }
 
     @objc private func crawl() {
@@ -141,3 +181,103 @@ class ViewController: UIViewController {
 //        }
 //    }
 //}
+
+extension ViewController: UITextFieldDelegate {
+    @objc func textDidChanged(_ textField: UITextField) {
+        do {
+            let index = textField.tag
+            switch index {
+            case 0:
+                let n1 = predictionTextFields[0].text?.toDouble()
+                let n2 = try predictN2(n1: n1)
+                predictionTextFields[1].text = String(format: "%0.3f", n2)
+                fallthrough
+            case 1:
+                let n1 = predictionTextFields[0].text?.toDouble()
+                let n2 = predictionTextFields[1].text?.toDouble()
+                let n3 = try predictN3(n1: n1, n2: n2)
+                predictionTextFields[2].text = String(format: "%0.3f", n3)
+                fallthrough
+            case 2:
+                let n1 = predictionTextFields[0].text?.toDouble()
+                let n2 = predictionTextFields[1].text?.toDouble()
+                let n3 = predictionTextFields[2].text?.toDouble()
+                let n4 = try predictN4(n1: n1, n2: n2, n3: n3)
+                predictionTextFields[3].text = String(format: "%0.3f", n4)
+                fallthrough
+            case 3:
+                let n1 = predictionTextFields[0].text?.toDouble()
+                let n2 = predictionTextFields[1].text?.toDouble()
+                let n3 = predictionTextFields[2].text?.toDouble()
+                let n4 = predictionTextFields[2].text?.toDouble()
+                let n5 = try predictN5(n1: n1, n2: n2, n3: n3, n4: n4)
+                predictionTextFields[4].text = String(format: "%0.3f", n5)
+                fallthrough
+            case 4:
+                let n1 = predictionTextFields[0].text?.toDouble()
+                let n2 = predictionTextFields[1].text?.toDouble()
+                let n3 = predictionTextFields[2].text?.toDouble()
+                let n4 = predictionTextFields[3].text?.toDouble()
+                let n5 = predictionTextFields[4].text?.toDouble()
+                let n6 = try predictN6(n1: n1, n2: n2, n3: n3, n4: n4, n5: n5)
+                predictionTextFields[5].text = String(format: "%0.3f", n6)
+            default:
+                break
+            }
+        } catch {
+            print("Cannot predict with error \(error)")
+        }
+    }
+}
+
+extension ViewController {
+    private func predictN2(n1: Double?) throws -> Double {
+        guard let n1 = n1 else { return 0 }
+        let input1 = N1ToN2Input(n1: n1)
+        let model1 = try N1ToN2(configuration: MLModelConfiguration())
+        let output1 = try model1.prediction(input: input1)
+        print("predict n2 from n1", output1.n2)
+        return output1.n2
+    }
+
+    private func predictN3(n1: Double?, n2: Double?) throws -> Double {
+        // Predict N3 from N1, N2
+        guard let n1 = n1, let n2 = n2 else { return 0 }
+        let input2 = N1N2ToN3Input(n1: n1, n2: n2)
+        let model2 = try N1N2ToN3(configuration: MLModelConfiguration())
+        let output2 = try model2.prediction(input: input2)
+        print("predict n3 from n1, n2", output2.n3)
+        return output2.n3
+    }
+
+    private func predictN4(n1: Double?, n2: Double?, n3: Double?) throws -> Double {
+        // Predict N3 from N1, N2
+        guard let n1 = n1, let n2 = n2, let n3 = n3 else { return 0 }
+        // Predict N4 from N1, N2, N3
+        let input3 = N1N2N3ToN4Input(n1: n1, n2: n2, n3: n3)
+        let model3 = try N1N2N3ToN4(configuration: MLModelConfiguration())
+        let output3 = try model3.prediction(input: input3)
+        print("predict n4 from n1, n2, n3", output3.n4)
+        return output3.n4
+    }
+
+    private func predictN5(n1: Double?, n2: Double?, n3: Double?, n4: Double?) throws -> Double {
+        // Predict N3 from N1, N2
+        guard let n1 = n1, let n2 = n2, let n3 = n3, let n4 = n4 else { return 0 }
+        // Predict N4 from N1, N2, N3
+        let input4 = N1N2N3N4ToN5Input(n1: n1, n2: n2, n3: n3, n4: n4)
+        let model4 = try N1N2N3N4ToN5(configuration: MLModelConfiguration())
+        let output4 = try model4.prediction(input: input4)
+        print("predict n5 from n1, n2, n3, n4", output4.n5)
+        return output4.n5
+    }
+
+    private func predictN6(n1: Double?, n2: Double?, n3: Double?, n4: Double?, n5: Double?) throws -> Double {
+        guard let n1 = n1, let n2 = n2, let n3 = n3, let n4 = n4, let n5 = n5 else { return 0 }
+        let input = MarsHabitatPricerInput(n1: n1, n2: n2, n3: n3, n4: n4, n5: n5)
+        let model = try MarsHabitatPricer(configuration: MLModelConfiguration())
+        let output = try model.prediction(input: input)
+        print("predict n6 from n1, n2, n3, n4, n5", output.n6)
+        return output.n6
+    }
+}
