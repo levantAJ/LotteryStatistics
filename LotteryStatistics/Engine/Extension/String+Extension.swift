@@ -19,4 +19,8 @@ extension String {
         return components(separatedBy: CharacterSet.decimalDigits.inverted)
             .joined()
     }
+
+    func toInt() -> Int? {
+        return Int(self)
+    }
 }

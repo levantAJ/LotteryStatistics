@@ -26,7 +26,7 @@ struct Draw: Codable {
         
         id = try container.decode(String.self, forKey: .id)
         numbers = try container.decode([Int].self, forKey: .numbers)
-        results = try container.decode([DrawResult].self, forKey: .results)
+        results = try container.decodeIfPresent([DrawResult].self, forKey: .results) ?? []
         
         let formatter = DateFormatter.ddMMyyyy
         if let parsingDate = formatter.date(from: try container.decode(String.self, forKey: .date)) {

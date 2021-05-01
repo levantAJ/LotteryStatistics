@@ -11,6 +11,7 @@ target 'LotteryStatistics' do
   pod 'Firebase/Database'
   pod 'Firebase/Performance'
   pod 'SafetyCollection'
+  pod 'TheConstraints'
 
   target 'LotteryStatisticsTests' do
     inherit! :search_paths

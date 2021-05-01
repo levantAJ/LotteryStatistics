@@ -9,24 +9,47 @@
 import UIKit
 import Fuzi
 import SafetyCollection
+import Foundation
 
 final class VLV2Crawler {
     lazy var network = SourceNetwork()
     lazy var parser = VLV2HTMLParser()
+    lazy var dbStorage = DBStorage()
 
-    func crawl() {
-        firstRequest { [weak self] in
-            self?.secondRequest { [weak self] in
-                self?.mainRequest(pageIndex: 1) { [weak self] response in
-                    self?.parser.parse(html: response.value.HtmlContent)
-                }
-            }
+    var completion: (() -> Void)?
+
+    func crawl(completion: (() -> Void)?) {
+        self.completion = completion
+        setupRequests { [weak self] in
+            self?.requestMain(pageIndex: 0)
         }
     }
 }
 
 extension VLV2Crawler {
-    func firstRequest(completion: (() -> Void)?) {
+    private func setupRequests(completion: (() -> Void)?) {
+        requestFirst { [weak self] in
+            self?.requestSecond {
+                completion?()
+            }
+        }
+    }
+
+    private func requestMain(pageIndex: Int) {
+        print("➡️ Requesting page \(pageIndex)...")
+        mainRequest(pageIndex: pageIndex) { [weak self] response in
+            guard let draws = self?.parser.parse(html: response.value.HtmlContent),
+                  !draws.isEmpty else {
+                self?.completion?()
+                return
+            }
+            self?.dbStorage.save(draws: draws)
+            print("➡️ Requested page \(pageIndex) success")
+            self?.requestMain(pageIndex: pageIndex + 1)
+        }
+    }
+
+    private func requestFirst(completion: (() -> Void)?) {
         request(request: makeFirstRequest()) { (result) in
             if (try? result.get()) != nil {
                 completion?()
@@ -34,7 +57,7 @@ extension VLV2Crawler {
         }
     }
 
-    func secondRequest(completion: (() -> Void)?) {
+    func requestSecond(completion: (() -> Void)?) {
         request(request: makeSecondRequest()) { (result) in
             if (try? result.get()) != nil {
                 completion?()
@@ -175,26 +198,32 @@ struct VLV2ResponseValue: Codable {
 }
 
 class VLV2HTMLParser {
-    func parse(html: String) {
+    func parse(html: String) -> [Draw] {
         do {
+            var draws: [Draw] = []
             let doc = try HTMLDocument(string: html, encoding: String.Encoding.utf8)
             let table = doc.xpath("//table/tbody/tr")
             for row in table {
                 let tds = row.xpath("td")
-                let date = tds[safe: 0]?.stringValue
-                let rounds = tds[safe: 1]?.stringValue
-
-                let numbers = tds[safe: 2]?.xpath("div/span")
-                print(numbers?[safe: 0]?.stringValue)
-                print(numbers?[safe: 1]?.stringValue)
-                print(numbers?[safe: 2]?.stringValue)
-                print(numbers?[safe: 3]?.stringValue)
-                print(numbers?[safe: 4]?.stringValue)
-                print(numbers?[safe: 5]?.stringValue)
+                let spans =  tds[safe: 2]?.xpath("div/span")
+                guard let dateString = tds[safe: 0]?.stringValue,
+                      let date = DateFormatter.ddMMYYY.date(from: dateString),
+                      let id = tds[safe: 1]?.stringValue,
+                      let numbers = spans?.compactMap({ $0.stringValue.toInt() }) else {
+                    continue
+                }
+                let draw = Draw(
+                    id: id,
+                    date: date,
+                    numbers: numbers,
+                    results: []
+                )
+                draws.append(draw)
             }
-            print(table)
+            return draws
         } catch {
             print("⛔️ Cannot parse \(html)")
+            return []
         }
     }
 }

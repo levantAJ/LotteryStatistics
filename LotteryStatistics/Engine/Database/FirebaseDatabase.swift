@@ -22,7 +22,7 @@ class FirebaseDatabase {
     func saveIfNeeded(draw: Draw) {
         let key = keyFrom(date: draw.date)
         let child = drawsRef.child(key)
-        child.observe(.value) { (dataSnapshot) in
+        child.observeSingleEvent(of: .value) { (dataSnapshot) in
             if !dataSnapshot.exists() {
                 child.setValue(draw.json)
             }
@@ -32,13 +32,13 @@ class FirebaseDatabase {
     func saveIfNeeded(crawl: Crawl) {
         let key = keyFrom(date: crawl.date)
         let child = datesRef.child(key)
-        child.observe(.value) { (dataSnapshot) in
+        child.observeSingleEvent(of: .value) { (dataSnapshot) in
             if !dataSnapshot.exists() {
                 child.setValue(crawl.json)
             }
         }
     }
-    
+
     func drawIsExisted(date: Date, completion: @escaping (Bool) -> Void) {
         let child = datesRef.child(keyFrom(date: date))
         child.observe(.value) { (dataSnapshot) in
@@ -75,5 +75,18 @@ class FirebaseDatabase {
 extension FirebaseDatabase {
     func keyFrom(date: Date) -> String {
         return date.string(dateFormat: "yyyy-MM-dd")
+    }
+}
+
+// MARK: - DBStorage
+
+final class DBStorage {
+    lazy var database = FirebaseDatabase()
+
+    func save(draws: [Draw]) {
+        for draw in draws {
+            database.saveIfNeeded(draw: draw)
+            database.saveIfNeeded(crawl: Crawl(date: draw.date, hasData: true))
+        }
     }
 }

@@ -14,18 +14,18 @@ class Crawler {
     let calendar = Calendar.current
     lazy var crawlerV2 = VLV2Crawler()
     
-    func crawl() {
+    func crawl(completion: (() -> Void)?) {
         // crawlV1()
-        crawlV2()
+        crawlV2(completion: completion)
     }
 }
 
 //MARK: - Privates - V2
 
 extension Crawler {
-    private func crawlV2() {
+    private func crawlV2(completion: (() -> Void)?) {
         DispatchQueue.global().async {
-            self.crawlerV2.crawl()
+            self.crawlerV2.crawl(completion: completion)
         }
     }
 
