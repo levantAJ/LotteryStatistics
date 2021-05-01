@@ -13,6 +13,7 @@ import TheConstraints
 class ViewController: UIViewController {
     lazy var crawler: Crawler = Crawler()
     lazy var db: FirebaseDatabase = FirebaseDatabase()
+    lazy var tracker: Tracker = Tracker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +47,16 @@ class ViewController: UIViewController {
         predictButton.height == crawlButton.height
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        db.draws { (draws) in
-            debugPrint(draws)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        db.draws { [weak self] result in
+            switch result {
+            case .success(let draws):
+                self?.tracker.track(draws: draws)
+                print(draws)
+            case .failure(let error):
+                print("Fetch draws failed with error \(error)")
+            }
         }
     }
 
@@ -71,16 +78,44 @@ class ViewController: UIViewController {
         //        let dataTable = try MLDataTable(contentsOf: csvFile)
 
         do {
-            let numbers: [Double] = [03,04,20,21,36]
-            let input = MarsHabitatPricerInput(n1: numbers[0], n2: numbers[1], n3: numbers[2], n4: numbers[3], n5: numbers[4])
+            // Predict N2 from N1
+            let input1 = N1ToN2Input(n1: 21)
+            let model1 = try N1ToN2(configuration: MLModelConfiguration())
+            let output1 = try model1.prediction(input: input1)
+            print("predict n2 from n1", output1.n2)
+
+            // Predict N3 from N1, N2
+            let input2 = N1N2ToN3Input(n1: 21, n2: 39)
+            let model2 = try N1N2ToN3(configuration: MLModelConfiguration())
+            let output2 = try model2.prediction(input: input2)
+            print("predict n3 from n1, n2", output2.n3)
+
+            // Predict N4 from N1, N2, N3
+            let input3 = N1N2N3ToN4Input(n1: 21, n2: 39, n3: 40)
+            let model3 = try N1N2N3ToN4(configuration: MLModelConfiguration())
+            let output3 = try model3.prediction(input: input3)
+            print("predict n4 from n1, n2, n3", output3.n4)
+
+            // Predict N5 from N1, N2, N3, N4
+            let input4 = N1N2N3N4ToN5Input(n1: 21, n2: 39, n3: 40, n4: 41)
+            let model4 = try N1N2N3N4ToN5(configuration: MLModelConfiguration())
+            let output4 = try model4.prediction(input: input4)
+            print("predict n5 from n1, n2, n3, n4", output4.n5)
+
+            // Predict N6 from N1, N2, N3, N4, N5
+            let n1ToN5Numbers: [Double] = [03,04,20,21,36]
+            let input = MarsHabitatPricerInput(n1: n1ToN5Numbers[0], n2: n1ToN5Numbers[1], n3: n1ToN5Numbers[2], n4: n1ToN5Numbers[3], n5: n1ToN5Numbers[4])
             let model = try MarsHabitatPricer(configuration: MLModelConfiguration())
             let output = try model.prediction(input: input)
-            print("predict n6", output.n6)
+            print("predict n6 from n1, n2, n3, n4, n5", output.n6)
 
-//            let input2 = MarsHabitatPurposeClassifierInput(n2: numbers[0], n3: numbers[1], n4: numbers[2], n5: 43, n6: 45)
-//            let model2 = try MarsHabitatPurposeClassifier(configuration: MLModelConfiguration())
-//            let output2 = try model2.prediction(input: input2)
-//            print("predict n1", output2.n1)
+//            // Classifier
+//            let input10 = MarsHabitatPurposeClassifierInput(n2: n1ToN5Numbers[0], n3: n1ToN5Numbers[1], n4: n1ToN5Numbers[2], n5: 43, n6: 45)
+//            let model10 = try MarsHabitatPurposeClassifier(configuration: MLModelConfiguration())
+//            let output10 = try model10.prediction(input: input10)
+//            print("predict n1", output10.n1)
+
+
         } catch {
             print("\(error)")
         }

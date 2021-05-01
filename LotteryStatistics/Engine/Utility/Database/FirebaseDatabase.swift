@@ -11,12 +11,14 @@ import Firebase
 class FirebaseDatabase {
     let ref: DatabaseReference
     let drawsRef: DatabaseReference
-    let datesRef: DatabaseReference
+    let crawlsRef: DatabaseReference
+    let trackingRef: DatabaseReference
     
     init() {
         ref = Database.database().reference()
         drawsRef = ref.child("draws")
-        datesRef = ref.child("crawls")
+        crawlsRef = ref.child("crawls")
+        trackingRef = ref.child("tracking")
     }
     
     func saveIfNeeded(draw: Draw) {
@@ -31,7 +33,7 @@ class FirebaseDatabase {
     
     func saveIfNeeded(crawl: Crawl) {
         let key = keyFrom(date: crawl.date)
-        let child = datesRef.child(key)
+        let child = crawlsRef.child(key)
         child.observeSingleEvent(of: .value) { (dataSnapshot) in
             if !dataSnapshot.exists() {
                 child.setValue(crawl.json)
@@ -40,7 +42,7 @@ class FirebaseDatabase {
     }
 
     func drawIsExisted(date: Date, completion: @escaping (Bool) -> Void) {
-        let child = datesRef.child(keyFrom(date: date))
+        let child = crawlsRef.child(keyFrom(date: date))
         child.observe(.value) { (dataSnapshot) in
             completion(dataSnapshot.exists())
         }
@@ -61,6 +63,31 @@ class FirebaseDatabase {
                         completion(.failure(error))
                     }
                 }
+            }
+        }
+    }
+
+    func isExisted<T>(
+        _ type: T.Type,
+        date: Date,
+        completion: @escaping (Bool) -> Void
+    ) {
+        if type == Tracking.self {
+            let child = trackingRef.child(keyFrom(date: date))
+            child.observeSingleEvent(of: .value) { (dataSnapshot) in
+                completion(dataSnapshot.exists())
+            }
+        } else {
+            completion(false)
+        }
+    }
+
+    func saveIfNeeded<T: Codable & Dateable & JSONParsable & FirebaseStorable>(_ value: T) {
+        let key = keyFrom(date: value.date)
+        let child = ref.child(value.firebaseKeyPath).child(key)
+        child.observeSingleEvent(of: .value) { (dataSnapshot) in
+            if !dataSnapshot.exists() {
+                child.setValue(value.json)
             }
         }
     }

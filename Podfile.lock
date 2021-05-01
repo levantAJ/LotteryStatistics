@@ -1,4 +1,6 @@
 PODS:
+  - Firebase/Analytics (4.10.1):
+    - Firebase/Core
   - Firebase/Core (4.10.1):
     - FirebaseAnalytics (= 4.1.0)
     - FirebaseCore (= 4.0.17)
@@ -48,6 +50,7 @@ PODS:
   - TheConstraints (1.5)
 
 DEPENDENCIES:
+  - Firebase/Analytics
   - Firebase/Core
   - Firebase/Database
   - Firebase/Performance
@@ -90,6 +93,6 @@ SPEC CHECKSUMS:
   SafetyCollection: d09cd8ec0eb8f6844fbf7b4a6887db681195d764
   TheConstraints: 218f13c81686296cbf794f15e44583e1eea2fe42
 
-PODFILE CHECKSUM: 29817e231c8cb37a955c67f7a8fe3a93c504fc43
+PODFILE CHECKSUM: 4e5a34174265904cfc71c8a494c5b3a69617e892
 
 COCOAPODS: 1.10.1

@@ -7,6 +7,7 @@ target 'LotteryStatistics' do
 
   # Pods for LotteryStatistics
   pod 'Fuzi'
+  pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Performance'

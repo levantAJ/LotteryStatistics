@@ -24,3 +24,17 @@ extension String {
         return Int(self)
     }
 }
+
+// MARK: - Tracking.EventName
+
+extension String {
+    static let eventNameDraw = "draw"
+}
+
+// MARK: - EventParams
+
+extension String {
+    static let eventParamId = "id"
+    static let eventParamDate = "date"
+    static let eventParamNumber = "number"
+}

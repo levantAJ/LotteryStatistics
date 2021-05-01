@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Draw: Codable {
+struct Draw: Codable, Dateable, JSONParsable {
     let id: String
     let date: Date
     let numbers: [Int]
@@ -47,5 +47,13 @@ struct Draw: Codable {
             "numbers": numbers,
             "results": resultsJSON
         ]
+    }
+}
+
+// MARK: - FirebaseStorable
+
+extension Draw: FirebaseStorable {
+    var firebaseKeyPath: String {
+        return "draws"
     }
 }

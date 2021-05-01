@@ -15,6 +15,7 @@ final class VLV2Crawler {
     lazy var network = SourceNetwork()
     lazy var parser = VLV2HTMLParser()
     lazy var dbStorage = DBStorage()
+    lazy var tracker = Tracker()
 
     var completion: (() -> Void)?
 
@@ -43,6 +44,7 @@ extension VLV2Crawler {
                 self?.completion?()
                 return
             }
+            self?.tracker.track(draws: draws)
             self?.dbStorage.save(draws: draws)
             print("➡️ Requested page \(pageIndex) success")
             self?.requestMain(pageIndex: pageIndex + 1)

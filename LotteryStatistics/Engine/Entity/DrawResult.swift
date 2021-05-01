@@ -6,7 +6,7 @@
 //  Copyright © 2018 levantAJ. All rights reserved.
 //
 
-struct DrawResult: Codable {
+struct DrawResult: Codable, JSONParsable {
     let name: String
     let matching: Int
     let numberOfPrize: Int
