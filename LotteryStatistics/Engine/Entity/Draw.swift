@@ -28,7 +28,7 @@ struct Draw: Codable, Dateable, JSONParsable {
         numbers = try container.decode([Int].self, forKey: .numbers)
         results = try container.decodeIfPresent([DrawResult].self, forKey: .results) ?? []
         
-        let formatter = DateFormatter.ddMMyyyy
+        let formatter = DateFormatter.ddMMYYY
         if let parsingDate = formatter.date(from: try container.decode(String.self, forKey: .date)) {
             date = parsingDate
         } else {

@@ -9,12 +9,14 @@
 import UIKit
 import CoreML
 import TheConstraints
+import DequeueKit
 
 class ViewController: UIViewController {
     lazy var crawler: Crawler = Crawler()
     lazy var db: FirebaseDatabase = FirebaseDatabase()
     lazy var tracker: Tracker = Tracker()
     lazy var predictionTextFields: [UITextField] = []
+    lazy var draws: [Draw] = []
 
     lazy var allStackView: UIStackView = {
         let stackView = UIStackView()
@@ -22,6 +24,14 @@ class ViewController: UIViewController {
         stackView.spacing = 16
         stackView.distribution = .equalCentering
         return stackView
+    }()
+
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(class: DrawTableViewCell.self)
+        tableView.dataSource = self
+        tableView.delegate = self
+        return tableView
     }()
     
     override func viewDidLoad() {
@@ -34,6 +44,8 @@ class ViewController: UIViewController {
         allStackView.top >= view.top + 44
         allStackView.bottom <= view.bottom - 44
 
+        addTableView()
+
         let crawlButton = UIButton(type: .system)
         crawlButton.setTitle("Start crawl", for: .normal)
         crawlButton.setTitleColor(.white, for: .normal)
@@ -45,6 +57,7 @@ class ViewController: UIViewController {
         allStackView.addArrangedSubview(crawlButton)
 
         addPredictionView()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,11 +66,35 @@ class ViewController: UIViewController {
             switch result {
             case .success(let draws):
                 self?.tracker.track(draws: draws)
-                print(draws)
+                self?.draws = draws.sorted(by: { (lhs, rhs) -> Bool in
+                    return lhs.date.timeIntervalSince1970 > rhs.date.timeIntervalSince1970
+                })
+                self?.tableView.reloadData()
             case .failure(let error):
                 print("Fetch draws failed with error \(error)")
             }
         }
+    }
+}
+
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return draws.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(type: DrawTableViewCell.self, for: indexPath)
+        if let draw = draws[safe: indexPath.row] {
+            cell.setDraw(draw)
+        }
+        return cell
+    }
+}
+
+extension ViewController {
+    private func addTableView() {
+        allStackView.addArrangedSubview(tableView)
+        tableView.height == 600
     }
 
     private func addPredictionView() {
@@ -279,5 +316,43 @@ extension ViewController {
         let output = try model.prediction(input: input)
         print("predict n6 from n1, n2, n3, n4, n5", output.n6)
         return output.n6
+    }
+}
+
+class DrawTableViewCell: UITableViewCell {
+    lazy var dateLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 12)
+        return label
+    }()
+
+    lazy var drawsLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 17, weight: .bold)
+        return label
+    }()
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.addSubview(dateLabel)
+        dateLabel.top == contentView.top
+        dateLabel.height == 22
+        dateLabel.leading == contentView.leading + 16
+        dateLabel.trailing == contentView.trailing - 16
+
+        contentView.addSubview(drawsLabel)
+        drawsLabel.leading == contentView.leading + 16
+        drawsLabel.trailing == contentView.trailing - 16
+        drawsLabel.top == dateLabel.bottom
+        drawsLabel.bottom == contentView.bottom
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func setDraw(_ draw: Draw) {
+        dateLabel.text = DateFormatter.ddMMYYY.string(from: draw.date)
+        drawsLabel.text = draw.numbers.map { "\($0)" }.joined(separator: " - ")
     }
 }

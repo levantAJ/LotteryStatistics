@@ -13,6 +13,7 @@ target 'LotteryStatistics' do
   pod 'Firebase/Performance'
   pod 'SafetyCollection'
   pod 'TheConstraints'
+  pod 'DequeueKit', '1.3'
 
   target 'LotteryStatisticsTests' do
     inherit! :search_paths
