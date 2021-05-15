@@ -47,10 +47,26 @@ let dataTable = try MLDataTable(contentsOf: csvFile)
  */
 print(dataTable)
 
-//let regressorColumns = ["n1", "n2", "n3", "n4","n5"] // n1n2n3n4 => n5
-let regressorColumns = ["n1", "n2", "n3", "n4", "n5", "n6"] // n1n2n3n4n5 => n6
-let regressorTable = dataTable[regressorColumns]
-print(regressorTable)
+let regressorColumnsN2 = ["n1", "n2"] // n1 => n2
+let regressorTableN2 = dataTable[regressorColumnsN2]
+print(regressorTableN2)
+
+let regressorColumnsN3 = ["n1", "n2", "n3"] // n1n2 => n3
+let regressorTableN3 = dataTable[regressorColumnsN3]
+print(regressorTableN3)
+
+let regressorColumnsN4 = ["n1", "n2", "n3", "n4"] // n1n2n3 => n4
+let regressorTableN4 = dataTable[regressorColumnsN4]
+print(regressorTableN4)
+
+let regressorColumnsN5 = ["n1", "n2", "n3", "n4", "n5"] // n1n2n3n4 => n5
+let regressorTableN5 = dataTable[regressorColumnsN5]
+print(regressorTableN5)
+
+
+let regressorColumnsN6 = ["n1", "n2", "n3", "n4", "n5", "n6"] // n1n2n3n4n5 => n6
+let regressorTableN6 = dataTable[regressorColumnsN6]
+print(regressorTableN6)
 
 /*:
  To predict the purpose of a habitat, the classifier needs a similar group of columns:
@@ -78,7 +94,17 @@ print(classifierTable)
  
  In this example, the playground sets aside 20% of each model’s data rows for evaluation, leaving the remaining 80% for training.
  */
-let (regressorEvaluationTable, regressorTrainingTable) = regressorTable.randomSplit(by: 0.20, seed: 5)
+
+let (regressorEvaluationTableN2, regressorTrainingTableN2) = regressorTableN2.randomSplit(by: 0.20, seed: 5) // n2
+
+let (regressorEvaluationTableN3, regressorTrainingTableN3) = regressorTableN3.randomSplit(by: 0.20, seed: 5) // n3
+
+let (regressorEvaluationTableN4, regressorTrainingTableN4) = regressorTableN4.randomSplit(by: 0.20, seed: 5) // n4
+
+let (regressorEvaluationTableN5, regressorTrainingTableN5) = regressorTableN5.randomSplit(by: 0.20, seed: 5) // n5
+
+let (regressorEvaluationTableN6, regressorTrainingTableN6) = regressorTableN6.randomSplit(by: 0.20, seed: 5) // n6
+
 let (classifierEvaluationTable, classifierTrainingTable) = classifierTable.randomSplit(by: 0.20, seed: 5)
 /*:
  The amount of data your model needs for evaluation versus training will vary with each app.
@@ -89,8 +115,16 @@ let (classifierEvaluationTable, classifierTrainingTable) = classifierTable.rando
  The `targetColumn` parameter determines what information you want the model to provide in its predictions.
  The playground tells the regressor to predict the price of a habitat by specifying `price` as the model’s target column.
  */
-let regressor = try MLLinearRegressor(trainingData: regressorTrainingTable, targetColumn: "n6") // => n6
-//let regressor = try MLLinearRegressor(trainingData: regressorTrainingTable, targetColumn: "n5") // => n5
+
+let regressorN2 = try MLLinearRegressor(trainingData: regressorTrainingTableN2, targetColumn: "n2") // => n2
+
+let regressorN3 = try MLLinearRegressor(trainingData: regressorTrainingTableN3, targetColumn: "n3") // => n3
+
+let regressorN4 = try MLLinearRegressor(trainingData: regressorTrainingTableN4, targetColumn: "n4") // => n4
+
+let regressorN5 = try MLLinearRegressor(trainingData: regressorTrainingTableN5, targetColumn: "n5") // => n5
+
+let regressorN6 = try MLLinearRegressor(trainingData: regressorTrainingTableN6, targetColumn: "n6") // => n6
 
 /*:
  During training,
@@ -111,8 +145,26 @@ let regressor = try MLLinearRegressor(trainingData: regressorTrainingTable, targ
  properties.
  */
 /// The largest distances between predictions and the expected values
-let worstTrainingError = regressor.trainingMetrics.maximumError
-let worstValidationError = regressor.validationMetrics.maximumError
+
+// n3
+let worstTrainingErrorN2 = regressorN2.trainingMetrics.maximumError
+let worstValidationErrorN2 = regressorN2.validationMetrics.maximumError
+
+// n3
+let worstTrainingErrorN3 = regressorN3.trainingMetrics.maximumError
+let worstValidationErrorN3 = regressorN3.validationMetrics.maximumError
+
+// n4
+let worstTrainingErrorN4 = regressorN4.trainingMetrics.maximumError
+let worstValidationErrorN4 = regressorN4.validationMetrics.maximumError
+
+// n5
+let worstTrainingErrorN5 = regressorN5.trainingMetrics.maximumError
+let worstValidationErrorN5 = regressorN5.validationMetrics.maximumError
+
+// n6
+let worstTrainingErrorN6 = regressorN6.trainingMetrics.maximumError
+let worstValidationErrorN6 = regressorN6.validationMetrics.maximumError
 /*:
  - Note:
  [`MLRegressorMetrics`](https://developer.apple.com/documentation/createml/mlregressormetrics)
@@ -123,10 +175,31 @@ let worstValidationError = regressor.validationMetrics.maximumError
  The playground evaluates the regressor’s performance by passing its evaluation data table.
  */
 /// Evaluate the regressor
-let regressorEvalutation = regressor.evaluation(on: regressorEvaluationTable)
 
+// n2
+let regressorEvalutationN2 = regressorN2.evaluation(on: regressorEvaluationTableN2)
 /// The largest distance between predictions and the expected values
-let worstEvaluationError = regressorEvalutation.maximumError
+let worstEvaluationErrorN2 = regressorEvalutationN2.maximumError
+
+// n3
+let regressorEvalutationN3 = regressorN3.evaluation(on: regressorEvaluationTableN3)
+/// The largest distance between predictions and the expected values
+let worstEvaluationErrorN3 = regressorEvalutationN3.maximumError
+
+// n4
+let regressorEvalutationN4 = regressorN4.evaluation(on: regressorEvaluationTableN4)
+/// The largest distance between predictions and the expected values
+let worstEvaluationErrorN4 = regressorEvalutationN4.maximumError
+
+// n5
+let regressorEvalutationN5 = regressorN5.evaluation(on: regressorEvaluationTableN5)
+/// The largest distance between predictions and the expected values
+let worstEvaluationErrorN5 = regressorEvalutationN5.maximumError
+
+// n6
+let regressorEvalutationN6 = regressorN6.evaluation(on: regressorEvaluationTableN6)
+/// The largest distance between predictions and the expected values
+let worstEvaluationErrorN6 = regressorEvalutationN6.maximumError
 /*:
  If your regressor’s evaluation performance isn’t good enough, you may need to:
  
@@ -140,8 +213,7 @@ let worstEvaluationError = regressorEvalutation.maximumError
  The playground trains the classifier to predict the purpose of a habitat.
  It does so by targeting a classifier on the `purpose` column of its training data table.
  */
-let classifier = try MLClassifier(trainingData: classifierTrainingTable,
-                                  targetColumn: "n1")
+let classifier = try MLClassifier(trainingData: classifierTrainingTable, targetColumn: "n1")
 /*:
  A classifier can only predict values provided in its training data, unlike a regressor,
  which can predict numeric values beyond those in its training data.
@@ -198,9 +270,14 @@ let homePath = FileManager.default.homeDirectoryForCurrentUser
 let desktopPath = homePath.appendingPathComponent("Desktop")
 
 let regressorMetadata = MLModelMetadata(author: "levantAJ", shortDescription: "Predicts the next generated numbner", version: "1.0")
+
+
 /// Save the trained regressor model to the Desktop.
-//try regressor.write(to: desktopPath.appendingPathComponent("N1N2N3N4ToN5.mlmodel"), metadata: regressorMetadata) // => n5
-try regressor.write(to: desktopPath.appendingPathComponent("N1N2N3N4N5ToN6.mlmodel"), metadata: regressorMetadata) // => n6
+try regressorN2.write(to: desktopPath.appendingPathComponent("N1ToN2.mlmodel"), metadata: regressorMetadata) // => n2
+try regressorN3.write(to: desktopPath.appendingPathComponent("N1N2ToN3.mlmodel"), metadata: regressorMetadata) // => n3
+try regressorN4.write(to: desktopPath.appendingPathComponent("N1N2N3ToN4.mlmodel"), metadata: regressorMetadata) // => n4
+try regressorN5.write(to: desktopPath.appendingPathComponent("N1N2N3N4ToN5.mlmodel"), metadata: regressorMetadata) // => n5
+try regressorN6.write(to: desktopPath.appendingPathComponent("N1N2N3N4N5ToN6.mlmodel"), metadata: regressorMetadata) // => n6
 /*:
  The playground similarly saves the purpose classifier to the user’s desktop.
  */
