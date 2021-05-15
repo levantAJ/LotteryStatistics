@@ -156,18 +156,25 @@ extension ViewController: UITextFieldDelegate {
                   let result: PredictorResult = predictor.predict(
                     number: .n2(n1: n1)
                   ) else { return }
-            setPredictorResult(result)
+            setPredictorResult(
+                result,
+                ignoredTextField: predictionTextFields[index]
+            )
         case 1:
             guard let n1 = predictionTextFields[0].text?.toDouble(),
                   let n2 = predictionTextFields[1].text?.toDouble(),
-                  let result: PredictorResult = predictor.predict(number: .n3(n1: n1, n2: n2)) else { return }
-            setPredictorResult(result)
+                  let result: PredictorResult = predictor.predict(
+                    number: .n3(n1: n1, n2: n2)
+                  ) else { return }
+            setPredictorResult(result, ignoredTextField: predictionTextFields[index])
         case 2:
             guard let n1 = predictionTextFields[0].text?.toDouble(),
                   let n2 = predictionTextFields[1].text?.toDouble(),
                   let n3 = predictionTextFields[2].text?.toDouble(),
-                  let result: PredictorResult = predictor.predict(number: .n4(n1: n1, n2: n2, n3: n3)) else { return }
-            setPredictorResult(result)
+                  let result: PredictorResult = predictor.predict(
+                    number: .n4(n1: n1, n2: n2, n3: n3)
+                  ) else { return }
+            setPredictorResult(result, ignoredTextField: predictionTextFields[index])
         case 3:
             guard let n1 = predictionTextFields[0].text?.toDouble(),
                   let n2 = predictionTextFields[1].text?.toDouble(),
@@ -176,32 +183,37 @@ extension ViewController: UITextFieldDelegate {
                   let result: PredictorResult = predictor.predict(
                     number: .n5(n1: n1, n2: n2, n3: n3, n4: n4)
                   ) else { return }
-            setPredictorResult(result)
+            setPredictorResult(result, ignoredTextField: predictionTextFields[index])
         case 4:
             guard let n1 = predictionTextFields[0].text?.toDouble(),
                   let n2 = predictionTextFields[1].text?.toDouble(),
                   let n3 = predictionTextFields[2].text?.toDouble(),
                   let n4 = predictionTextFields[3].text?.toDouble(),
-                  let n5 = predictionTextFields[3].text?.toDouble(),
+                  let n5 = predictionTextFields[4].text?.toDouble(),
                   let result: PredictorResult = predictor.predict(
                     number: .n6(n1: n1, n2: n2, n3: n3, n4: n4, n5: n5)
                   ) else { return }
-            setPredictorResult(result)
+            setPredictorResult(result, ignoredTextField: predictionTextFields[index])
         default:
             break
         }
     }
 
-    private func setPredictorResult(_ result: PredictorResult) {
-        setTextField(predictionTextFields[0], value: result.n1)
-        setTextField(predictionTextFields[1], value: result.n2)
-        setTextField(predictionTextFields[2], value: result.n3)
-        setTextField(predictionTextFields[3], value: result.n4)
-        setTextField(predictionTextFields[4], value: result.n5)
-        setTextField(predictionTextFields[5], value: result.n6)
+    private func setPredictorResult(_ result: PredictorResult, ignoredTextField: UITextField) {
+        setTextField(predictionTextFields[0], value: result.n1, ignoredTextField: ignoredTextField)
+        setTextField(predictionTextFields[1], value: result.n2, ignoredTextField: ignoredTextField)
+        setTextField(predictionTextFields[2], value: result.n3, ignoredTextField: ignoredTextField)
+        setTextField(predictionTextFields[3], value: result.n4, ignoredTextField: ignoredTextField)
+        setTextField(predictionTextFields[4], value: result.n5, ignoredTextField: ignoredTextField)
+        setTextField(predictionTextFields[5], value: result.n6, ignoredTextField: ignoredTextField)
     }
 
-    private func setTextField(_ textField: UITextField, value: Double) {
+    private func setTextField(
+        _ textField: UITextField,
+        value: Double,
+        ignoredTextField: UITextField
+    ) {
+        guard textField != ignoredTextField else { return }
         textField.text = String(format: "%0.3f", value)
     }
 }
