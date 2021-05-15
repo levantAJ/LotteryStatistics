@@ -25,6 +25,9 @@
 		33E90CC4205E31510046825E /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E90CC3205E31510046825E /* DateFormatter+Extension.swift */; };
 		33ED66B52054D7E4005BAED2 /* SourceNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ED66B42054D7E4005BAED2 /* SourceNetwork.swift */; };
 		33ED66B82054DC39005BAED2 /* HtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ED66B72054DC39005BAED2 /* HtmlParser.swift */; };
+		69E1DECC264F7F5F00F35BF6 /* N1N2N3N4N5ToN6.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 69E1DECB264F7F5F00F35BF6 /* N1N2N3N4N5ToN6.mlmodel */; };
+		69E1DED1264F7F6E00F35BF6 /* DrawTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E1DED0264F7F6E00F35BF6 /* DrawTableViewCell.swift */; };
+		69E1DED7264F7F9800F35BF6 /* Perdictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E1DED6264F7F9800F35BF6 /* Perdictor.swift */; };
 		69E8918F263BB8FE00AF583B /* VLV2Crawler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E8918E263BB8FE00AF583B /* VLV2Crawler.swift */; };
 		69E891D1263C047B00AF583B /* lotterystatistics.csv in Resources */ = {isa = PBXBuildFile; fileRef = 69E891D0263C047B00AF583B /* lotterystatistics.csv */; };
 		69E891D6263C073400AF583B /* MarsHabitatPricer.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 69E891D5263C073400AF583B /* MarsHabitatPricer.mlmodel */; };
@@ -84,6 +87,9 @@
 		33ED66B42054D7E4005BAED2 /* SourceNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceNetwork.swift; sourceTree = "<group>"; };
 		33ED66B72054DC39005BAED2 /* HtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlParser.swift; sourceTree = "<group>"; };
 		3E526697F3A26B20449DE0E5 /* Pods-LotteryStatisticsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LotteryStatisticsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LotteryStatisticsUITests/Pods-LotteryStatisticsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		69E1DECB264F7F5F00F35BF6 /* N1N2N3N4N5ToN6.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = N1N2N3N4N5ToN6.mlmodel; sourceTree = "<group>"; };
+		69E1DED0264F7F6E00F35BF6 /* DrawTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawTableViewCell.swift; sourceTree = "<group>"; };
+		69E1DED6264F7F9800F35BF6 /* Perdictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Perdictor.swift; sourceTree = "<group>"; };
 		69E8918E263BB8FE00AF583B /* VLV2Crawler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLV2Crawler.swift; sourceTree = "<group>"; };
 		69E891D0263C047B00AF583B /* lotterystatistics.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lotterystatistics.csv; sourceTree = "<group>"; };
 		69E891D5263C073400AF583B /* MarsHabitatPricer.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MarsHabitatPricer.mlmodel; sourceTree = "<group>"; };
@@ -159,12 +165,14 @@
 				33ED66B22054D7A3005BAED2 /* Engine */,
 				3301DC5A2054CDB200B6283B /* AppDelegate.swift */,
 				3301DC5C2054CDB200B6283B /* ViewController.swift */,
+				69E1DED0264F7F6E00F35BF6 /* DrawTableViewCell.swift */,
 				3301DC5E2054CDB200B6283B /* Main.storyboard */,
 				3301DC612054CDB200B6283B /* Assets.xcassets */,
 				69E891F4263CE38500AF583B /* N1ToN2.mlmodel */,
 				69E891F9263CEA6900AF583B /* N1N2ToN3.mlmodel */,
 				69E891FE263CEA7500AF583B /* N1N2N3ToN4.mlmodel */,
 				69E89203263CEA7A00AF583B /* N1N2N3N4ToN5.mlmodel */,
+				69E1DECB264F7F5F00F35BF6 /* N1N2N3N4N5ToN6.mlmodel */,
 				69E891D5263C073400AF583B /* MarsHabitatPricer.mlmodel */,
 				69E891DA263C073900AF583B /* MarsHabitatPurposeClassifier.mlmodel */,
 				3301DC632054CDB200B6283B /* LaunchScreen.storyboard */,
@@ -247,6 +255,14 @@
 			path = Parser;
 			sourceTree = "<group>";
 		};
+		69E1DED5264F7F8900F35BF6 /* Predictor */ = {
+			isa = PBXGroup;
+			children = (
+				69E1DED6264F7F9800F35BF6 /* Perdictor.swift */,
+			);
+			path = Predictor;
+			sourceTree = "<group>";
+		};
 		69E891AF263BC5D800AF583B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				69E8920F263CF01700AF583B /* Constants.swift */,
+				69E1DED5264F7F8900F35BF6 /* Predictor */,
 				69E89209263CEF9000AF583B /* Tracker */,
 				330A57542054E49C00168CE4 /* Database */,
 				330A57632054F98F00168CE4 /* Crawler */,
@@ -544,8 +561,10 @@
 				3301DC5D2054CDB200B6283B /* ViewController.swift in Sources */,
 				69E891DB263C073900AF583B /* MarsHabitatPurposeClassifier.mlmodel in Sources */,
 				339748082056D5FC00C71D86 /* Crawl.swift in Sources */,
+				69E1DED1264F7F6E00F35BF6 /* DrawTableViewCell.swift in Sources */,
 				69E8918F263BB8FE00AF583B /* VLV2Crawler.swift in Sources */,
 				69E8920B263CEF9D00AF583B /* Tracker.swift in Sources */,
+				69E1DECC264F7F5F00F35BF6 /* N1N2N3N4N5ToN6.mlmodel in Sources */,
 				69E891F5263CE38500AF583B /* N1ToN2.mlmodel in Sources */,
 				69E89210263CF01700AF583B /* Constants.swift in Sources */,
 				330A57622054F09000168CE4 /* String+Extension.swift in Sources */,
@@ -556,6 +575,7 @@
 				69E89204263CEA7A00AF583B /* N1N2N3N4ToN5.mlmodel in Sources */,
 				33ED66B52054D7E4005BAED2 /* SourceNetwork.swift in Sources */,
 				3301DC5B2054CDB200B6283B /* AppDelegate.swift in Sources */,
+				69E1DED7264F7F9800F35BF6 /* Perdictor.swift in Sources */,
 				69E891FF263CEA7500AF583B /* N1N2N3ToN4.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
