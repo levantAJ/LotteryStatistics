@@ -40,7 +40,7 @@ import Foundation
 import CreateML
 
 /// Create a data table from a CSV file in the playground’s `Resources` folder.
-let csvFile = Bundle.main.url(forResource: "lotterystatistics-27-01-2022", withExtension: "csv")!
+let csvFile = Bundle.main.url(forResource: "lotterystatistics-02-12-2022", withExtension: "csv")!
 let dataTable = try MLDataTable(contentsOf: csvFile)
 /*:
  Pass your data table to `print()` to see a pretty-printed sample of its contents in the console.

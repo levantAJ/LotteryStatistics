@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     lazy var predictionTextFields: [UITextField] = []
     lazy var draws: [Draw] = []
     lazy var predictor: Predictor = Predictor()
+    lazy var treePredictor = TreePredictor()
 
     lazy var allStackView: UIStackView = {
         let stackView = UIStackView()
@@ -58,6 +59,8 @@ class ViewController: UIViewController {
 
         addPredictionView()
 
+
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,10 +73,31 @@ class ViewController: UIViewController {
                     return lhs.date.timeIntervalSince1970 > rhs.date.timeIntervalSince1970
                 })
                 self?.tableView.reloadData()
+
+                self?.treePredictor.build(draws: draws)
+                self?.treePredictor.visualize()
+
             case .failure(let error):
                 print("Fetch draws failed with error \(error)")
             }
         }
+
+//        let node = treePredictor.build(numbers: [1, 2, 3, 4])
+//        print(node)
+//        node?.visualize()
+
+//        treePredictor.build(draws: [
+//            Draw(id: "", date: Date(), numbers: [1, 2, 3], results: []),
+//            Draw(id: "", date: Date(), numbers: [1, 5, 6], results: []),
+//            Draw(id: "", date: Date(), numbers: [1, 8, 9], results: []),
+//        ])
+//        print("----------")
+//        treePredictor.visualize()
+
+//        let node = treePredictor.build(numbers: [1, 2, 3, 4])!
+//        treePredictor.build(node: node, numbers: [2, 4, 5])
+//        treePredictor.build(node: node, numbers: [2, 4, 6, 7])
+//        node.printTree()
     }
 }
 

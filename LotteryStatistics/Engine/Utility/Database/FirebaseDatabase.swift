@@ -6,7 +6,8 @@
 //  Copyright © 2018 levantAJ. All rights reserved.
 //
 
-import Firebase
+import FirebaseCore
+import FirebaseDatabase
 
 class FirebaseDatabase {
     let ref: DatabaseReference
