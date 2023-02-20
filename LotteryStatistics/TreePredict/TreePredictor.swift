@@ -50,6 +50,23 @@ class Node<Value> {
     func printTree() {
         print(treeLines().joined(separator:"\n"))
     }
+
+    func sortNumbers() {
+        if children.isEmpty {
+            return
+        }
+        children.sort(by: { $0.count > $1.count })
+        for child in children {
+            child.sortNumbers()
+        }
+    }
+
+    func sumFirst() -> Int {
+        if let first = children.first {
+            return count + first.sumFirst()
+        }
+        return count
+    }
 }
 
 final class TreePredictor {
@@ -114,9 +131,18 @@ final class TreePredictor {
     }
 
     func visualize() {
-        for node in nodes.values {
+        for node in sort() {
             node.printTree()
             print("===============")
         }
+    }
+
+    func sort() -> [Node<Int>] {
+        var nodes = Array(nodes.values).sorted(by: { $0.count > $1.count })
+        for node in nodes {
+            node.sortNumbers()
+        }
+        nodes = nodes.sorted(by: { $0.sumFirst() > $1.sumFirst() })
+        return nodes
     }
 }

@@ -15,7 +15,8 @@ class ViewController: UIViewController {
     lazy var db: FirebaseDatabase = FirebaseDatabase()
     lazy var tracker: Tracker = Tracker()
     lazy var predictionTextFields: [UITextField] = []
-    lazy var draws: [Draw] = []
+    lazy var allDraws: [Draw] = []
+    lazy var displayDraws: [Draw] = []
     lazy var predictor: Predictor = Predictor()
     lazy var treePredictor = TreePredictor()
 
@@ -34,6 +35,39 @@ class ViewController: UIViewController {
         tableView.delegate = self
         return tableView
     }()
+
+    lazy var searchTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "Search (e.g. 1-2-3-4-5)"
+        textField.addTarget(self, action: #selector(searchTextChanged), for: .editingChanged)
+        return textField
+    }()
+
+    lazy var resultCountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .right
+        return label
+    }()
+
+    lazy var searchView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(searchTextField)
+        searchTextField.top == view.top
+        searchTextField.leading == view.leading + 12.0
+        searchTextField.bottom == view.bottom
+
+        view.addSubview(resultCountLabel)
+        resultCountLabel.top == view.top
+        resultCountLabel.bottom == view.bottom
+        resultCountLabel.trailing == view.trailing - 12
+        resultCountLabel.leading == resultCountLabel.trailing + 4
+        resultCountLabel.width == 50
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,22 +79,10 @@ class ViewController: UIViewController {
         allStackView.top >= view.top + 44
         allStackView.bottom <= view.bottom - 44
 
+        addTitleView()
         addTableView()
-
-        let crawlButton = UIButton(type: .system)
-        crawlButton.setTitle("Start crawl", for: .normal)
-        crawlButton.setTitleColor(.white, for: .normal)
-        crawlButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
-        crawlButton.translatesAutoresizingMaskIntoConstraints = false
-        crawlButton.addTarget(self, action: #selector(crawl), for: .touchUpInside)
-        crawlButton.backgroundColor = .red
-        crawlButton.height == 44
-        allStackView.addArrangedSubview(crawlButton)
-
+        addCrawlButton()
         addPredictionView()
-
-
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,11 +91,8 @@ class ViewController: UIViewController {
             switch result {
             case .success(let draws):
                 self?.tracker.track(draws: draws)
-                self?.draws = draws.sorted(by: { (lhs, rhs) -> Bool in
-                    return lhs.date.timeIntervalSince1970 > rhs.date.timeIntervalSince1970
-                })
-                self?.tableView.reloadData()
-
+                self?.setDraws(draws)
+                self?.reloadData()
                 self?.treePredictor.build(draws: draws)
                 self?.treePredictor.visualize()
 
@@ -103,12 +122,12 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return draws.count
+        return displayDraws.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(type: DrawTableViewCell.self, for: indexPath)
-        if let draw = draws[safe: indexPath.row] {
+        if let draw = displayDraws[safe: indexPath.row] {
             cell.setDraw(draw)
         }
         return cell
@@ -116,9 +135,38 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension ViewController {
+    private func setDraws(_ draws: [Draw]) {
+        allDraws = draws.sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.date.timeIntervalSince1970 > rhs.date.timeIntervalSince1970
+        })
+        displayDraws = allDraws
+    }
+
+    private func reloadData() {
+        tableView.reloadData()
+        resultCountLabel.text = "\(displayDraws.count)"
+    }
+
+    private func addTitleView() {
+        allStackView.addArrangedSubview(searchView)
+        searchView.height == 44.0
+    }
+
     private func addTableView() {
         allStackView.addArrangedSubview(tableView)
         tableView.height == 600
+    }
+
+    private func addCrawlButton() {
+        let crawlButton = UIButton(type: .system)
+        crawlButton.setTitle("Start crawl", for: .normal)
+        crawlButton.setTitleColor(.white, for: .normal)
+        crawlButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        crawlButton.translatesAutoresizingMaskIntoConstraints = false
+        crawlButton.addTarget(self, action: #selector(crawl), for: .touchUpInside)
+        crawlButton.backgroundColor = .red
+        crawlButton.height == 44
+        allStackView.addArrangedSubview(crawlButton)
     }
 
     private func addPredictionView() {
@@ -170,8 +218,8 @@ extension ViewController {
     @objc func predict() {}
 }
 
-
 extension ViewController: UITextFieldDelegate {
+
     @objc func textDidChanged(_ textField: UITextField) {
         let index = textField.tag
         switch index {
@@ -239,5 +287,25 @@ extension ViewController: UITextFieldDelegate {
     ) {
         guard textField != ignoredTextField else { return }
         textField.text = String(format: "%0.3f", value)
+    }
+
+    @objc func searchTextChanged() {
+        if let text = searchTextField.text?.replacingOccurrences(of: " ", with: "") {
+            let numbers = text.components(separatedBy: "-").compactMap({ Int($0) })
+            displayDraws = allDraws.filter({ $0.numbers.contains(numbers) })
+            reloadData()
+        } else {
+            setDraws(allDraws)
+            reloadData()
+        }
+    }
+}
+
+extension Array where Element: Equatable {
+    func contains(_ array: [Element]) -> Bool {
+        for item in array {
+            if !self.contains(item) { return false }
+        }
+        return true
     }
 }
